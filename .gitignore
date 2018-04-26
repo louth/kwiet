@@ -1,0 +1,11 @@
+**/out
+**/.idea
+**/*.iml
+**/.gradle
+**/build
+*/gradle
+*/gradlew
+*/gradlew
+*/gradlew.bat
+**/creds.data
+**/gactions
