@@ -1,0 +1,24 @@
+{
+  "package": {
+    "name": "kwiet",
+    "repo": "maven",
+    "subject": "louth",
+    "vcs_url": "https://github.com/louth/kwiet.git",
+    "licenses": ["Apache-2.0"],
+    "public_download_numbers": true,
+    "public_stats": true
+  },
+
+  "version": {
+    "name": "0.1",
+    "released": "2018-04-27",
+    "vcs_tag": "0.1",
+    "gpgSign": false
+  },
+
+  "files":
+  [
+    {"includePattern": "build/libs/(.*)-(\d+\.\d+).jar", "uploadPattern": "/au/com/louth/kwiet/$2/$1-$2.jar"}
+  ],
+  "publish": true
+}
