@@ -1,0 +1,17 @@
+language: java
+
+deploy:
+  provider: script
+  script: gradle bintrayUpload
+  user: louth
+  skip_cleanup: true
+  key:
+    secure: zJltxermXH4Z8CUYKtrGL+j+zxc85ml/srxPFGRUzqkqh2n78h87+HXjAYvt4zxiKlK/76hOtmSBaDKRzdidxbm6hwayRpp7tu3rG9CW3cwoXbD0um+nuqV5hGduIPPyRJPLfpl7AiF4BB98+PeZKOJ6Y/HB6tmLiR6MRRVXkJuWy99T5HPl7PODHVF9EuoCGp8E9GU33a4uI44Km3fU/x5UilmdMp2jiTnZrLk4d9is5DjwpVJoNDWOXJX6in5b/pCAggS+WLzYGZJd+a3uQyPIIkxPE3zs6SmyDsSI/OFE+mnzHq5ciuFWkDeaqWewwKVsLyuuRWYq3LnM2TZ39dGrb07Y0z7F97OdzFeaqO0eFkiOxsfF75g9fhHHAjfsCjb91xw8AwuaBE1gOg/l+igCivd7ersTnKhH78LZV9J60UTb0GUZkszhljeq0R3YJxjyuf59VhENsfAVt6KIXqO64o8z3kX5nyGUpeLcHQV6MkwC810SkfIEBPMY5IbT/5VFYJmbxV9/xGUN8wu3OqF11YGBgkzUj9A8c4YcWF00dp30v7UlWIPLiQTLrwhxjjRb0gp5zQMmeoR3vPcqVqKypq+KDJrqEsx4iWAkqdwthji7uSL25Wa8q0mKVd8EC6iQ7UtbVOzAxmHtPLs5ykHGDaLjJSzS8rbl2Sa2FnE=
+
+before_cache:
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"

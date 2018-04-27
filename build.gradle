@@ -1,3 +1,6 @@
-group 'au.com.louth'
-version '1.0-SNAPSHOT'
+
+subprojects() {
+    group 'au.com.louth'
+    version '0.1'
+}
 
