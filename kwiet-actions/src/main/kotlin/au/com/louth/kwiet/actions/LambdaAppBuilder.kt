@@ -29,7 +29,7 @@ object JacksonSerializer : Serializer {
     override fun <T> deserialize(str: String, clazz: Class<T>) = mapper.readValue(str, clazz)
 }
 
-fun buildApp(request: ActionRequest, serializer: Serializer = JacksonSerializer): ActionsSdkApp {
+fun buildLambdaApp(request: ActionRequest, serializer: Serializer = JacksonSerializer): ActionsSdkApp {
     val requestWrapper = RequestWrapper(body = request)
     val responseWrapper = ResponseWrapper(body = ActionResponse())
     return ActionsSdkApp(requestWrapper, responseWrapper, serializer = serializer)
