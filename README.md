@@ -11,38 +11,38 @@ This project began as a fork of
 
 ```
 repositories {
-  maven { url  "https://dl.bintray.com/louth/maven" }
+  jcenter()
 }
 
 dependencies {
-  compile 'au.com.louth:kwiet-actions:0.1'
+  compile 'au.com.louth:kwiet-actions-sdk:0.2'
 }
 ```
 
 ## Usage
 
-### Action on Google - AWS Lambda
+### Google ActionsSDK on AWS Lambda
 
 ```
 
-fun main(app: ActionsSdkApp) =
-        app.ask(app.buildRichResponse().addSimpleResponse(speech = "Hello."))
-
-fun cancel(app: ActionsSdkApp) =
-        app.tell(speech = "Goodbye.")
-        
-val actionMap = mutableMapOf(       
-        app.STANDARD_INTENTS.MAIN to ::main,
-        app.STANDARD_INTENTS.CANCEL to ::cancel)
- 
- // this is the lambda message handler
-fun handleActionRequest(request: ActionRequest): ActionResponse? {
-    val app = buildLambdaApp(request)
-        
-    app.handleRequest(actionMap)
-    
-    return app.response.body
+fun mainHandler(request: AppRequest) = simpleResponse {
+    textToSpeech = "Hello - using kwiet-actions-sdk-0.2"
 }
+
+fun quitHandler(request: AppRequest) = finalResponse {
+    textToSpeech = "Goodbye"
+}
+
+fun echoHandler(request: AppRequest) = simpleResponse {
+    textToSpeech = request.getArg("text")
+}
+
+val handlers = mapOf(
+        StandardIntent.MAIN to ::mainHandler,
+        StandardIntent.CANCEL to ::quitHandler,
+        StandardIntent.TEXT to ::echoHandler)
+
+fun handleActionRequest(request: AppRequest) = handleRequest(handlers, request)
 
 ```
 

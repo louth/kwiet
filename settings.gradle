@@ -1,1 +1,3 @@
 include "kwiet-actions"
+include 'kwiet-actions-sdk'
+
