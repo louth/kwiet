@@ -1,6 +1,6 @@
 # kwiet
 
-![](https://travis-ci.org/louth/kwiet.svg?branch=master) [ ![](https://api.bintray.com/packages/louth/maven/kwiet/images/download.svg) ](https://bintray.com/louth/maven/kwiet/_latestVersion)
+![](https://travis-ci.org/louth/kwiet.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/louth/kwiet/badge.svg?branch=master)](https://coveralls.io/github/louth/kwiet?branch=master) [ ![](https://api.bintray.com/packages/louth/maven/kwiet/images/download.svg) ](https://bintray.com/louth/maven/kwiet/_latestVersion)
 
 Kotlin implementation for voice technologies.
 
@@ -11,7 +11,9 @@ This project began as a fork of
 
 ```
 repositories {
-  jcenter()
+  maven {
+    url  "https://dl.bintray.com/louth/maven"
+  }
 }
 
 dependencies {

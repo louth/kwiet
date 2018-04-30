@@ -1,8 +1,18 @@
 buildscript {
     ext {
+        // source
         kotlin_version = '1.2.31'
         jacksonKotlin_version = '2.9.5'
+
+        // test
+        junit_version = '4.12'
+        hamcrest_version = '1.3'
+        mockito_version = '2.15.0'
+
+        // plugins
         bintrayPlugin_version = '1.7.3'
+        coverallsPlugin_version = '2.8.2'
+        consoleReporter_version = '0.5.0'
     }
 
     repositories {
@@ -12,13 +22,18 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPlugin_version"
+        classpath "org.kt3k.gradle.plugin:coveralls-gradle-plugin:$coverallsPlugin_version"
+        classpath "com.github.ksoichiro:gradle-console-reporter:$consoleReporter_version"
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'kotlin'
+apply plugin: 'jacoco'
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: "com.github.kt3k.coveralls"
+apply plugin: 'com.github.ksoichiro.console.reporter'
 
 sourceCompatibility = 1.8
 
@@ -29,6 +44,10 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonKotlin_version"
+
+    testCompile "junit:junit:$junit_version"
+    testCompile "org.hamcrest:hamcrest-core:$hamcrest_version"
+    testCompile "org.mockito:mockito-inline:$mockito_version"
 }
 
 compileKotlin {
@@ -58,6 +77,9 @@ artifacts {
     archives javadocJar
 }
 
+/**
+ * Publishes to bintray
+ */
 bintray {
     user = System.getenv('BINTRAY_USER')
     key = System.getenv('BINTRAY_KEY')
@@ -79,10 +101,16 @@ bintray {
             name = project.version
             desc = 'Gradle Bintray Plugin demo'
             released = new Date()
+            gpg {
+                sign = true
+            }
         }
     }
 }
 
+/**
+ * Create pom configuration
+ */
 def pomConfig = {
     licenses {
         license {
@@ -97,7 +125,9 @@ def pomConfig = {
     }
 }
 
-// Create the publication with the pom configuration:
+/**
+ * Create the publication with the pom configuration
+ */
 publishing {
     publications {
         KwietPublication(MavenPublication) {
@@ -113,3 +143,15 @@ publishing {
         }
     }
 }
+
+
+/**
+ * Coverage report percentages to the console.
+ */
+//consoleReporter {
+//    jacoco {
+//        reportFile = ["${buildDir}/reports/jacoco/test/jacocoTestReport.xml"]
+//    }
+//}
+
+jacocoTestReport.dependsOn build
