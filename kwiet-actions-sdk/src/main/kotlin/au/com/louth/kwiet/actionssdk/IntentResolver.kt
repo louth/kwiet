@@ -2,11 +2,20 @@ package au.com.louth.kwiet.actionssdk
 
 import au.com.louth.kwiet.actionssdk.models.AppRequest
 import au.com.louth.kwiet.actionssdk.models.AppResponse
+import kotlin.reflect.KFunction
 
-fun handleRequest(handlers: Map<String, (AppRequest) -> AppResponse>, request: AppRequest) : AppResponse {
-    val intent = request.intents().first {
-        handlers.containsKey(it)
-    }
-    return handlers.get(intent)?.invoke(request) ?: AppResponse(conversationToken = "FAIL")
+
+fun handleLambdaRequest(request: AppRequest, context: Any, handlers: Map<String, KFunction<*>>) : AppResponse {
+
+    val intent = request.intents().first { handlers.containsKey(it) }
+
+    val function = handlers[intent]
+
+    return (when(function?.parameters?.size) {
+        2 -> function.call(request, context)
+        1 -> function.call(request)
+        else -> function?.call()
+    }) as AppResponse
+
 }
 

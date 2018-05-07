@@ -3,9 +3,10 @@ package au.com.louth.kwiet.actionssdk
 import au.com.louth.kwiet.actionssdk.StandardIntent.TEXT
 import au.com.louth.kwiet.actionssdk.models.*
 
-fun response(init: AppResponse.() -> Unit) {
+fun appResponse(init: AppResponse.() -> Unit)  : AppResponse {
     val response = AppResponse()
     response.init()
+    return response
 }
 
 fun AppResponse.expectedInput(init: ExpectedInput.() -> Unit) {
@@ -20,10 +21,35 @@ fun AppResponse.finalResponse(init: FinalResponse.() -> Unit) {
     this.finalResponse = finalResponse
 }
 
+fun AppResponse.possibleIntents(vararg intents: String): AppResponse {
+    if (expectedInputs.size == 0) {
+        expectedInputs.add(ExpectedInput())
+    }
+    expectedInputs.forEach { input ->
+        input.possibleIntents.clear()
+        intents.forEach {
+            input.possibleIntents.add(ExpectedIntent(it))
+        }
+    }
+    return this
+}
+
 fun ExpectedInput.inputPrompt(init: InputPrompt.() -> Unit) {
     val inputPrompt = InputPrompt()
     inputPrompt.init()
     this.inputPrompt = inputPrompt
+}
+
+fun ExpectedInput.possibleIntents(init: MutableList<ExpectedIntent>.() -> Unit) {
+    val possibleIntents = mutableListOf<ExpectedIntent>()
+    possibleIntents.init()
+    this.possibleIntents = possibleIntents
+}
+
+fun MutableList<ExpectedIntent>.intent(init: ExpectedIntent.() -> Unit) {
+    val expectedIntent = ExpectedIntent()
+    expectedIntent.init()
+    add(expectedIntent)
 }
 
 fun InputPrompt.richResponse(init: RichResponse.() -> Unit) {
@@ -50,35 +76,23 @@ fun Item.simpleResponse(init: SimpleResponse.() -> Unit) {
     this.simpleResponse = simpleResponse
 }
 
-fun ExpectedInput.possibleIntents(init: MutableList<ExpectedIntent>.() -> Unit) {
-    val possibleIntents = mutableListOf<ExpectedIntent>()
-    possibleIntents.init()
-    this.possibleIntents = possibleIntents
-}
-
-fun MutableList<ExpectedIntent>.intent(init: ExpectedIntent.() -> Unit) {
-    val expectedIntent = ExpectedIntent()
-    expectedIntent.init()
-    add(expectedIntent)
-}
-
 fun simpleResponse(init: SimpleResponse.() -> Unit): AppResponse {
 
-    val response = AppResponse()
-
-    response.expectedInput {
-        inputPrompt {
-            richResponse {
-                item {
-                    simpleResponse {
-                        init()
+    val response = appResponse {
+        expectedInput {
+            inputPrompt {
+                richResponse {
+                    item {
+                        simpleResponse {
+                            init()
+                        }
                     }
                 }
             }
-        }
-        possibleIntents {
-            intent {
-                intent = TEXT
+            possibleIntents {
+                intent {
+                    intent = TEXT
+                }
             }
         }
     }
@@ -86,7 +100,7 @@ fun simpleResponse(init: SimpleResponse.() -> Unit): AppResponse {
     return response
 }
 
-fun finalResponse(init: SimpleResponse.() -> Unit) : AppResponse {
+fun finalResponse(init: SimpleResponse.() -> Unit): AppResponse {
 
     val response = AppResponse()
 
@@ -102,16 +116,21 @@ fun finalResponse(init: SimpleResponse.() -> Unit) : AppResponse {
     }
 
     return response
-}
 
-fun AppResponse.possibleIntents(vararg intents : String) : AppResponse {
-    expectedInputs.forEach { input ->
-        input.possibleIntents.clear()
-        intents.forEach {
-            input.possibleIntents.add(ExpectedIntent(it))
-        }
-    }
-    return this
+//    return appResponse {
+//        expectUserResponse = false
+//        expectedInput {
+//            finalResponse {
+//                richResponse {
+//                    item {
+//                        simpleResponse {
+//                            init()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 }
 
 
