@@ -2,6 +2,7 @@
 
 Kotlin implementation for voice technologies.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76402f2ab4ec449b8f622dd21a687452)](https://app.codacy.com/app/louth/kwiet?utm_source=github.com&utm_medium=referral&utm_content=louth/kwiet&utm_campaign=badger)
 ![](https://travis-ci.org/louth/kwiet.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/louth/kwiet/badge.svg?branch=master)](https://coveralls.io/github/louth/kwiet?branch=master) [ ![](https://api.bintray.com/packages/louth/maven/kwiet/images/download.svg) ](https://bintray.com/louth/maven/kwiet/_latestVersion) 
 
 ## Getting Started
