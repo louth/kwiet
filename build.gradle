@@ -1,6 +1,5 @@
 
 subprojects() {
     group 'au.com.louth'
-    version '0.3'
+    version '0.4'
 }
-

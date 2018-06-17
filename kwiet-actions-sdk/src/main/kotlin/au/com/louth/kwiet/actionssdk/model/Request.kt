@@ -1,6 +1,4 @@
-package au.com.louth.kwiet.actionssdk.models
-
-import au.com.louth.kwiet.actionssdk.models.ConversationType.TYPE_UNSPECIFIED
+package au.com.louth.kwiet.actionssdk.model
 
 data class AppRequest(var user: User? = null,
                       var device: Device? = null,
@@ -12,18 +10,20 @@ data class AppRequest(var user: User? = null,
 
     fun intents() : Set<String?> = inputs.map { it.intent }.toSet()
 
-    fun getArg(name: String) : String {
-        var textValue : String = ""
+    fun getText() = getArg("text")
+
+    private fun getArg(name: String) : String {
+        var value : String = ""
 
         inputs.forEach {
             input -> input.arguments.forEach {
                 arg -> if (arg.name == name) {
-                    textValue = arg.textValue ?: textValue
+                    value = arg.textValue ?: value
                 }
             }
         }
 
-        return textValue
+        return value
     }
 }
 

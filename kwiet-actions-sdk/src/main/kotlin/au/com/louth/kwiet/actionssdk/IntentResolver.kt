@@ -1,7 +1,7 @@
 package au.com.louth.kwiet.actionssdk
 
-import au.com.louth.kwiet.actionssdk.models.AppRequest
-import au.com.louth.kwiet.actionssdk.models.AppResponse
+import au.com.louth.kwiet.actionssdk.model.AppRequest
+import au.com.louth.kwiet.actionssdk.model.AppResponse
 import kotlin.reflect.KFunction
 
 

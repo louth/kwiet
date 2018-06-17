@@ -3,7 +3,7 @@ package au.com.louth.kwiet.actionssdk
 import au.com.louth.kwiet.actionssdk.StandardIntent.CANCEL
 import au.com.louth.kwiet.actionssdk.StandardIntent.MAIN
 import au.com.louth.kwiet.actionssdk.StandardIntent.TEXT
-import au.com.louth.kwiet.actionssdk.models.*
+import au.com.louth.kwiet.actionssdk.model.*
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat

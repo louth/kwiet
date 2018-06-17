@@ -1,7 +1,7 @@
 package au.com.louth.kwiet.actionssdk
 
 import au.com.louth.kwiet.actionssdk.StandardIntent.TEXT
-import au.com.louth.kwiet.actionssdk.models.*
+import au.com.louth.kwiet.actionssdk.model.*
 
 fun appResponse(init: AppResponse.() -> Unit)  : AppResponse {
     val response = AppResponse()

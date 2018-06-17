@@ -1,4 +1,4 @@
-package au.com.louth.kwiet.actionssdk.models
+package au.com.louth.kwiet.actionssdk.model
 
 data class OpenUrlAction(var url: String,
                          var androidApp: AndroidApp,

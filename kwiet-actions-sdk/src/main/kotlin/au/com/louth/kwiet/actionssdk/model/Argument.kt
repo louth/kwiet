@@ -1,4 +1,4 @@
-package au.com.louth.kwiet.actionssdk.models
+package au.com.louth.kwiet.actionssdk.model
 
 data class Argument(var name : String? = null,
                     var rawText : String? = null,

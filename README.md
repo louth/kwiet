@@ -2,7 +2,7 @@
 
 Kotlin implementation for voice technologies.
 
-![](https://travis-ci.org/louth/kwiet.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/louth/kwiet/badge.svg?branch=master)](https://coveralls.io/github/louth/kwiet?branch=master) [ ![](https://api.bintray.com/packages/louth/maven/kwiet/images/download.svg) ](https://bintray.com/louth/maven/kwiet/_latestVersion) 
+![](https://travis-ci.org/louth/kwiet.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/louth/kwiet/badge.svg?branch=master)](https://coveralls.io/github/louth/kwiet?branch=master) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2ef5c06312e64a55946f106532ca7b7a)](https://www.codacy.com/app/louth/kwiet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=louth/kwiet&amp;utm_campaign=Badge_Grade)[ ![](https://api.bintray.com/packages/louth/maven/kwiet/images/download.svg) ](https://bintray.com/louth/maven/kwiet/_latestVersion) 
 
 ## Getting Started
 
@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  compile 'au.com.louth:kwiet-actions-sdk:0.3'
+  compile 'au.com.louth:kwiet-actions-sdk:0.4'
 }
 ```
 

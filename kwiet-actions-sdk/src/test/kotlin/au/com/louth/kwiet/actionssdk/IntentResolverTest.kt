@@ -3,8 +3,8 @@ package au.com.louth.kwiet.actionssdk
 import au.com.louth.kwiet.actionssdk.StandardIntent.CANCEL
 import au.com.louth.kwiet.actionssdk.StandardIntent.MAIN
 import au.com.louth.kwiet.actionssdk.StandardIntent.TEXT
-import au.com.louth.kwiet.actionssdk.models.AppRequest
-import au.com.louth.kwiet.actionssdk.models.Input
+import au.com.louth.kwiet.actionssdk.model.AppRequest
+import au.com.louth.kwiet.actionssdk.model.Input
 import org.junit.Test
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
